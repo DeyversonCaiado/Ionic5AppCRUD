@@ -1,0 +1,46 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>CRUD edição de ususarios</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <div class="">
+    <ion-item>
+      <ion-input type="text" placeholder="Seu nome" [(ngModel)]="your_name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" placeholder="Email" *ngIf="id==0" [(ngModel)]="email_address"></ion-input>
+      <ion-input type="text" placeholder="Email" *ngIf="id!=0" readonly="true" [(ngModel)]="email_address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label style="color: #999;">Gênero</ion-label>
+      <ion-select placeholder="Selecione uma opção" interface="popover" [(ngModel)]="gender">
+        <ion-select-option value="m">Masculino</ion-select-option>
+        <ion-select-option value="f">Feminino</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label style="color: #999;">Data de nascimento</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="date_birth" min="1945-03-14" max="2019-12-01"></ion-datetime>
+    </ion-item>    
+    <ion-item>
+      <ion-input type="password" placeholder="Senha" [(ngModel)]="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="password" placeholder="Confirme a senha" [(ngModel)]="confirm_pass"></ion-input>
+    </ion-item>
+    <ion-button expand="full" class="no-padding" *ngIf="id==0" color="success" (click)="crudAction('Create')"
+    [disable]="disabledButton">Cadastrar</ion-button>
+    <ion-button expand="full" class="no-padding" *ngIf="id!=0" color="success" (click)="crudAction('Update')"
+    [disable]="disabledButton">Atualizar</ion-button>
+    <p style="font-size: 14px;color: #999;" class="ion-padding" *ngIf="id!=0">
+      Deixe o campo senha em branco caso nao queira mudar.
+    </p>
+  </div>
+  </ion-list>
+</ion-content>
